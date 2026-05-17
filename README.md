@@ -148,3 +148,10 @@ Proyecto-Final-DataScience-Evolve-CarlosBarrientos/
 ---
 
 **Proyecto Final — Master en Data Science de Evolve**
+
+**Enlaces a documentación sobre el proyecto:**
+- medium --> https://medium.com/@carlosbarrientoslopez/cuando-los-datos-te-cuentan-historias-analisis-del-mercado-inmobiliario-español-con-ia-4d51a4a07ac0
+- dev.to --> https://dev.to/carlos_barrientos_6d15639/analisis-del-mercado-de-alquiler-en-espana-scraping-ml-e-ia-con-llms-locales-49hc
+- linkedin --> https://www.linkedin.com/feed/update/urn:li:activity:7461840870833758209/
+
+
