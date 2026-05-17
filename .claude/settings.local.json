@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /home/barri/programacion-barri/Master-Evolve/proyectos/Proyecto-Final-DataScience-Evolve-CarlosBarrientos -not -path */entorno/* -not -path */__pycache__/* -not -name *.pyc -not -name *.png -not -name *.html)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ]
+  }
+}

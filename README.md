@@ -1,89 +1,152 @@
-# Análisis del Mercado de Alquiler en España
+# Análisis e Insights del Mercado de Alquiler en España con IA
 
-Proyecto de Data Science, Machine Learning y RAG aplicado al mercado de alquiler residencial español.
-Fuentes de datos: portales inmobiliarios (Idealista, Fotocasa, Pisos.com).
+##  Título y Descripción
+
+**Problema:** El mercado de alquiler en España es fragmentado, con información dispersa en múltiples portales y búsquedas rígidas que no captan consultas flexibles en lenguaje natural.
+
+**Solución:** Un pipeline end-to-end que:
+1. **Extrae** datos de portales inmobiliarios (scraping automatizado)
+2. **Analiza** patrones y correlaciones del mercado (EDA)
+3. **Predice** precios con modelos de machine learning
+4. **Responde** consultas en lenguaje natural sobre el mercado mediante un agente RAG inteligente
+
+**Enfoque:** Combinamos técnicas clásicas de data science (EDA, ML) con inteligencia artificial moderna (RAG, LLMs) para crear un asistente que entiende preguntas como *"¿Qué hay barato en Malasaña?"* o *"Zona tranquila bien comunicada"*.
 
 ---
 
-## Objetivo
+##  Tecnologías y Herramientas
 
-Construir un pipeline completo que:
-1. **Extrae** datos de alquiler de portales inmobiliarios (`00_scraping/`)
-2. **Analiza** el mercado con visualizaciones y estadísticas (`01_eda_analysis/`)
-3. **Predice** precios de alquiler con modelos de ML (`02_ml_models/`)
-4. **Responde** preguntas en lenguaje natural sobre el mercado mediante un agente RAG (`03_rag_agent/`)
+### Lenguajes y Librerías Core
+- **Python 3.9+** — Lenguaje principal
+- **Pandas, NumPy** — Manipulación y análisis de datos
+- **Scikit-learn** — Modelos de ML (regresión, clasificación, árboles)
+
+### Scraping y Data Collection
+- **BeautifulSoup, Requests** — HTML parsing estático
+- **Playwright** — Navegación y JS dinámico
+- **Node.js + Puppeteer** — Scraping avanzado anti-bot
+
+### Análisis Exploratorio (EDA)
+- **Matplotlib, Seaborn** — Visualizaciones estáticas
+- **Plotly** — Gráficos interactivos
+- **Folium** — Mapas geográficos
+
+### Machine Learning y Predicción
+- **XGBoost, LightGBM** — Modelos de predicción de precios
+- **SHAP** — Interpretabilidad de modelos
+
+### RAG e Inteligencia Artificial
+- **LangChain, LangGraph** — Orquestación de agentes
+- **ChromaDB** — Base de datos vectorial
+- **Sentence-Transformers** — Embeddings locales
+- **OpenAI API** — LLM para generación de respuestas
+
+### Base de Datos y Storage
+- **PostgreSQL** — Base de datos relacional para datos crudos scrapeados (inmuebles_raw)
+- **ChromaDB** — Base de datos vectorial para embeddings y búsqueda semántica RAG
+
+### Herramientas Auxiliares
+- **Jupyter Notebooks** — Desarrollo interactivo
+- **Git** — Control de versiones
+- **Loguru** — Logging estructurado
+- **Python-dotenv** — Gestión de variables de entorno
 
 ---
 
-## Estructura del Proyecto
+##  Estructura del Repositorio
 
 ```
-├── 00_scraping/          # Extracción de datos de portales inmobiliarios
-├── 01_eda_analysis/      # Análisis exploratorio y visualizaciones
-├── 02_ml_models/         # Modelos de predicción de precios
-├── 03_rag_agent/         # Agente RAG con LangGraph para consultas en lenguaje natural
-├── src/                  # Código reutilizable (DB, preprocesado, utilidades)
-├── config/               # Configuración centralizada (YAML)
-├── data/                 # Datos raw, procesados y embeddings
-├── logs/                 # Registros de ejecución
-└── docs/                 # Documentación del proyecto
+Proyecto-Final-DataScience-Evolve-CarlosBarrientos/
+
+├── 00_scraping/
+│   ├── fotocasa_scraper.js          ← Script Node.js: extrae anuncios de Fotocasa
+│   ├── idealista_scraper.py         ← Python: scraping dinámico con Playwright
+│   ├── pisos_scraper.py             ← Python: parsing HTML estático
+│   ├── data_cleaning.py             ← Limpieza y normalización de datos crudos
+│   ├── run_scrapers.py              ← Orquestador: ejecuta todos los scrapers
+│   └── README_scraping.md           ← Documentación del módulo
+│
+├── 01_eda_analysis/
+│   ├── 01_exploracion_datos.ipynb   ← EDA completo: distribuciones, correlaciones, outliers
+│   ├── 02_visualizaciones.ipynb     ← Gráficos: histogramas, scatter, mapas, heatmaps
+│   └── output/                      ← Salida: PNGs, HTMLs interactivos
+│
+├── 02_ml_models/
+│   ├── 03_regresion_precios.ipynb   ← Entrenamiento: RF, XGBoost, LightGBM
+│   ├── 04_analisis_features.ipynb   ← Feature importance, SHAP, análisis de errores
+│   ├── train.py                     ← Script de entrenamiento en producción
+│   ├── predict.py                   ← Inferencia (usado por agente RAG)
+│   ├── model_evaluation.md          ← Registro de métricas
+│   └── models/                      ← Modelos entrenados (.pkl, .joblib)
+│
+├── 03_rag_agent/
+│   ├── 05_rag_setup.ipynb           ← Construcción del índice ChromaDB
+│   ├── 06_agente_langgraph.ipynb    ← Desarrollo y pruebas del agente
+│   ├── app.py                       ← CLI interactivo: chat con el agente
+│   ├── queries_examples.txt         ← Ejemplos de consultas por complejidad
+│   ├── README_rag.md                ← Documentación del módulo
+│   └── src/
+│       ├── document_loader.py       ← Carga BD → documentos en texto natural
+│       ├── embeddings.py            ← Genera embeddings con Sentence-Transformers
+│       ├── vectorstore.py           ← Gestor ChromaDB: búsqueda MMR
+│       ├── retriever.py             ← Recuperación: búsqueda semántica + filtros
+│       ├── tools.py                 ← Herramientas del agente (5 funciones)
+│       ├── agent.py                 ← Lógica LangGraph: ciclo ReAct
+│       └── utils.py                 ← Funciones auxiliares: parsing, formateo
+│
+├── src/
+│   ├── database/
+│   │   ├── connection.py            ← Conexión a inmuebles.db (SQLite/PostgreSQL)
+│   │   ├── models.py                ← Definición de tablas (SQLAlchemy)
+│   │   └── crud.py                  ← Operaciones CRUD
+│   ├── preprocessing/
+│   │   ├── cleaner.py               ← Limpieza de datos (normalización, outliers)
+│   │   ├── normalizer.py            ← Normalización de formatos
+│   │   └── feature_extractor.py     ← Feature engineering
+│   └── utils/
+│       ├── logger.py                ← Setup de logging centralizado
+│       └── helpers.py               ← Funciones auxiliares comunes
+│
+├── config/
+│   ├── config.yaml                  ← Configuración: ciudades, delays, rutas
+│   ├── database.yaml                ← Conexión BD: SQLite/PostgreSQL
+│   └── model_params.yaml            ← Hiperparámetros y features del modelo
+│
+├── data/
+│   ├── raw/                         ← CSVs del scraping (temporal, ignorados en Git)
+│   ├── processed/                   ← PostgreSQL inmuebles_raw (datos crudos)
+│   └── embeddings/                  ← ChromaDB (índice vectorial para RAG)
+│
+├── logs/                            ← Archivos de log con rotación
+│
+├── docs/
+│   ├── ARQUITECTURA.md              ← Diagrama de componentes y flujos
+│   ├── METODOLOGIA.md               ← Decisiones técnicas (CRISP-DM adaptado)
+│   └── RESULTADOS_CLAVE.md          ← Tabla de métricas (para rellenar)
+│
+├── .gitignore                       ← Exclusiones: datos, modelos, logs, .env
+├── .env.example                     ← Plantilla de variables de entorno
+├── requirements.txt                 ← Dependencias Python agrupadas por módulo
+└── README.md                        ← Este archivo
+
 ```
 
----
+### Descripción por Carpeta
 
-## Instalación
-
-```bash
-python -m venv entorno
-source entorno/bin/activate      # Linux/Mac
-# entorno\Scripts\activate       # Windows
-
-pip install -r requirements.txt
-cp .env.example .env             # Rellenar con tus claves API
-```
-
----
-
-## Flujo de Ejecución
-
-```
-python 00_scraping/run_scrapers.py        # 1. Scraping
-jupyter notebook 01_eda_analysis/         # 2. EDA
-jupyter notebook 02_ml_models/            # 3. ML
-python 03_rag_agent/app.py                # 4. Agente RAG
-```
+| Carpeta | Contenido | Propósito |
+|---------|----------|-----------|
+| `00_scraping/` | Scripts de extracción (JS, Python) | Obtener 21K+ registros de portales inmobiliarios |
+| `01_eda_analysis/` | Notebooks de análisis | Entender distribuciones, correlaciones, patrones |
+| `02_ml_models/` | Notebooks y scripts de ML | Entrenar modelos de predicción de precios |
+| `03_rag_agent/` | Notebooks, app CLI, módulos RAG | Crear agente inteligente que responde en lenguaje natural |
+| `src/` | Código reutilizable | Funciones comunes (BD, preprocesado, logging) |
+| `config/` | Archivos YAML | Centralizar configuración (parámetros, credenciales) |
+| `data/` | Raw (CSV), PostgreSQL, ChromaDB | Almacenamiento: datos crudos en PostgreSQL, embeddings en ChromaDB |
+| `logs/` | Registros de ejecución | Debugging y monitoreo |
+| `docs/` | Documentación técnica | Explicar arquitectura, decisiones, resultados |
 
 ---
 
-## Tecnologías
 
-| Área        | Herramientas                              |
-|-------------|-------------------------------------------|
-| Scraping    | Playwright, BeautifulSoup, SQLite         |
-| EDA         | Pandas, Seaborn, Plotly                   |
-| ML          | Scikit-learn, XGBoost, LightGBM           |
-| RAG / Agent | LangChain, LangGraph, ChromaDB, OpenAI    |
 
----
-
-## Base de Datos
-
-SQLite (`data/processed/inmuebles.db`) — tabla principal: `inmuebles`
-
-| Campo          | Tipo    | Descripción                        |
-|----------------|---------|------------------------------------|
-| id             | INTEGER | Clave primaria                     |
-| titulo         | TEXT    | Título del anuncio                 |
-| precio_mes     | REAL    | Precio mensual en euros            |
-| metros         | REAL    | Superficie en m²                   |
-| habitaciones   | INTEGER | Número de habitaciones             |
-| ciudad         | TEXT    | Ciudad                             |
-| distrito       | TEXT    | Distrito o barrio                  |
-| latitud        | REAL    | Coordenada geográfica              |
-| longitud       | REAL    | Coordenada geográfica              |
-| fuente         | TEXT    | Portal de origen (idealista, etc.) |
-| fecha_scraping | DATE    | Fecha de extracción                |
-
----
-
-*Proyecto Final — Master Data Science & IA — Evolve*
+**Proyecto Final — Master en Data Science de Evolve**
