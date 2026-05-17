@@ -59,7 +59,7 @@ python 03_rag_agent/app.py                # 4. Agente RAG
 
 | Área        | Herramientas                              |
 |-------------|-------------------------------------------|
-| Scraping    | Playwright, BeautifulSoup, SQLite         |
+| Scraping    | Playwright, BeautifulSoup, Selenium, PostgreSQL         |
 | EDA         | Pandas, Seaborn, Plotly                   |
 | ML          | Scikit-learn, XGBoost, LightGBM           |
 | RAG / Agent | LangChain, LangGraph, ChromaDB, OpenAI    |
@@ -68,7 +68,7 @@ python 03_rag_agent/app.py                # 4. Agente RAG
 
 ## Base de Datos
 
-SQLite (`data/processed/inmuebles.db`) — tabla principal: `inmuebles`
+PostgreSQL (`data/processed/inmuebles.db`) — tabla principal: `inmuebles`
 
 | Campo          | Tipo    | Descripción                        |
 |----------------|---------|------------------------------------|
