@@ -1,0 +1,31 @@
+# config.yaml
+# ===========
+# Configuración general del proyecto. Centraliza parámetros que de otro
+# modo estarían hardcodeados en múltiples scripts.
+# Cargado por src/utils/helpers.py → función load_config()
+
+proyecto:
+  nombre: "Mercado Alquiler España"
+  version: "1.0.0"
+
+scraping:
+  ciudades:             # Lista de ciudades a scrapear
+    - madrid
+    - barcelona
+    - valencia
+    - sevilla
+    - malaga
+  delay_segundos: 2     # Pausa entre peticiones para no sobrecargar servidores
+  max_paginas: 20       # Límite de páginas por ciudad y portal
+  reintentos: 3         # Intentos ante error HTTP antes de abandonar
+
+datos:
+  ruta_raw: "data/raw/"
+  ruta_procesados: "data/processed/"
+  ruta_embeddings: "data/embeddings/"
+  archivo_db: "data/processed/inmuebles.db"
+
+logging:
+  nivel: "INFO"         # DEBUG | INFO | WARNING | ERROR
+  archivo: "logs/proyecto.log"
+  rotacion: "10 MB"     # Rotación automática de loguru

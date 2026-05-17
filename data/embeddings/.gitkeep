@@ -1,0 +1,3 @@
+# Carpeta para el índice vectorial de ChromaDB.
+# Los archivos de embeddings están en .gitignore por su tamaño.
+# Se regeneran ejecutando: python 03_rag_agent/src/embeddings.py

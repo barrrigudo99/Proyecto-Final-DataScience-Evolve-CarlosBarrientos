@@ -1,0 +1,3 @@
+# Carpeta para datos crudos descargados por los scrapers.
+# Los archivos CSV/JSON generados están en .gitignore (pueden ser grandes).
+# Usar DVC o almacenamiento externo (S3, Drive) para compartirlos.

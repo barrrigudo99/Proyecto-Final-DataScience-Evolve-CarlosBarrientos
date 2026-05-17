@@ -1,0 +1,2 @@
+# Este archivo mantiene la carpeta logs/ en git.
+# Los archivos .log generados en tiempo de ejecución están en .gitignore.

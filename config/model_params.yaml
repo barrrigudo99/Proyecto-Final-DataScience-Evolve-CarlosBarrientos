@@ -1,0 +1,49 @@
+# model_params.yaml
+# =================
+# Hiperparámetros de los modelos de ML. Separar la configuración del código
+# permite reentrenar con distintos parámetros sin tocar el código fuente.
+# Cargado por 02_ml_models/train.py
+
+features:
+  numericas:
+    - metros
+    - habitaciones
+    - planta
+    - latitud
+    - longitud
+  categoricas:
+    - ciudad
+    - distrito
+    - tipo_inmueble
+
+target: precio_mes
+
+modelos:
+  random_forest:
+    n_estimators: 200
+    max_depth: 15
+    min_samples_split: 5
+    random_state: 42
+
+  xgboost:
+    n_estimators: 300
+    learning_rate: 0.05
+    max_depth: 6
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+  lightgbm:
+    n_estimators: 300
+    learning_rate: 0.05
+    num_leaves: 63
+    random_state: 42
+
+evaluacion:
+  metricas: [mae, rmse, r2]               # Métricas a reportar
+  cv_folds: 5                             # Folds para cross-validation
+  test_size: 0.2                          # Proporción del conjunto de test
+
+rutas:
+  modelos_guardados: "02_ml_models/models/"
+  reportes: "02_ml_models/reports/"

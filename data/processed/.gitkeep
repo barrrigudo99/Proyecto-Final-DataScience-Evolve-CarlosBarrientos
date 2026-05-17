@@ -1,0 +1,2 @@
+# Carpeta para datos limpios y la base de datos SQLite (inmuebles.db).
+# inmuebles.db también está en .gitignore por su tamaño.

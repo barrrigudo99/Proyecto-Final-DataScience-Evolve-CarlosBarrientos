@@ -1,0 +1,26 @@
+# database.yaml
+# =============
+# Configuración de la base de datos SQLite que almacena los inmuebles.
+# En producción podría apuntar a PostgreSQL cambiando solo este archivo.
+# Cargado por src/database/connection.py
+
+conexion:
+  tipo: sqlite                              # sqlite | postgresql
+  url: "sqlite:///data/processed/inmuebles.db"
+
+  # Configuración PostgreSQL (comentada, para uso futuro)
+  # tipo: postgresql
+  # host: localhost
+  # puerto: 5432
+  # nombre: inmuebles_db
+  # usuario: ds_user
+  # password: ${DB_PASSWORD}               # Valor real en .env
+
+tablas:
+  inmuebles: "inmuebles"                    # Tabla principal de anuncios
+  ciudades: "ciudades"                      # Catálogo normalizado de ciudades
+  distritos: "distritos"                    # Catálogo normalizado de distritos
+
+opciones:
+  pool_size: 5                              # Conexiones simultáneas
+  echo_sql: false                           # true para debug de queries SQL
