@@ -1,6 +1,6 @@
 # Análisis e Insights del Mercado de Alquiler en España con IA
 
-## 🎯 Título y Descripción
+##  Título y Descripción
 
 **Problema:** El mercado de alquiler en España es fragmentado, con información dispersa en múltiples portales y búsquedas rígidas que no captan consultas flexibles en lenguaje natural.
 
@@ -14,7 +14,7 @@
 
 ---
 
-## 🛠️ Tecnologías y Herramientas
+##  Tecnologías y Herramientas
 
 ### Lenguajes y Librerías Core
 - **Python 3.9+** — Lenguaje principal
@@ -23,7 +23,7 @@
 
 ### Scraping y Data Collection
 - **BeautifulSoup, Requests** — HTML parsing estático
-- **Playwright** — Navegación y JS dinámico
+- **Playwright, Selenium** — Navegación y JS dinámico
 - **Node.js + Puppeteer** — Scraping avanzado anti-bot
 
 ### Análisis Exploratorio (EDA)
@@ -53,7 +53,7 @@
 
 ---
 
-## 📂 Estructura del Repositorio
+##  Estructura del Repositorio
 
 ```
 Proyecto-Final-DataScience-Evolve-CarlosBarrientos/
